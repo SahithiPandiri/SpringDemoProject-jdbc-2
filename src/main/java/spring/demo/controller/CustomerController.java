@@ -40,7 +40,7 @@ public class CustomerController {
     }
    @RequestMapping("/saveCustomerReg")
     //@PostMapping("/saveCustomer")
-    public String saveCustomer( @Valid @ModelAttribute("customer") users theUsers ,BindingResult bindingResult )
+    public String saveCustomer(@Valid @ModelAttribute("customer") users theUsers ,BindingResult bindingResult )
     {
         if(bindingResult.hasErrors()){
             return "customerForm";
@@ -86,7 +86,6 @@ public class CustomerController {
            System.out.println(theUsers);
            return "SinglecustomerUpdateForm";
        }
-        System.out.println("out binding error");
         customerService.saveCustomer(theUsers);
         model.addAttribute("user", theUsers);
         return "empList1";
