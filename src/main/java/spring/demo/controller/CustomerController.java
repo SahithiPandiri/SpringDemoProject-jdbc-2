@@ -18,7 +18,11 @@ import java.util.List;
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
-    private CustomerService customerService;
+    public CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @RequestMapping("/list")
     public String listCustomers(Model model)
@@ -96,8 +100,13 @@ public class CustomerController {
     }
     @RequestMapping("/saveAccount")
     //@PostMapping("/saveCustomer")
-    public String saveAccount(@ModelAttribute("account")  Payroll theAccount)
+    public String saveAccount( @Valid @ModelAttribute("account")  Payroll theAccount,BindingResult bindingResult)
     {
+        if(bindingResult.hasErrors()){
+            System.out.println("has errors");
+            return "AccontForm";
+        }
+
         customerService.saveAccount(theAccount);
         return "redirect:/payroll/accounts";
     }

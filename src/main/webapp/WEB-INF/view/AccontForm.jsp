@@ -10,23 +10,26 @@
     <link type="text/css"
           rel="stylesheet"
           href="${pageContext.request.contextPath}/sources/css/add-customer-style.css"/>
-
+<style>
+          		.error {color:red}
+          	</style>
 
 </head>
 <body>
 <div id="wrapper">
     <div id="header">
         <h2>Add Employee PayRoll Details</h2>
-
     </div>
 </div>
+<br>
+<br>
     <div id="container">
 <form:form action="saveAccount" modelAttribute="account" method="POST">
     <table>
         <tbody>
         <tr>
                     <td><label>Salary</label></td>
-                    <td><form:input path="salary"/></td>
+                    <td><form:input path="salary"/><form:errors path="salary" cssClass="error" /></td>
           </tr>
             <tr>
                         <td><label></label></td>
@@ -36,7 +39,7 @@
     </table>
     <div style="clear; both;"></div>
     <p>
-        <a href="${pageContext.request.contextPath}/customer/showFormForAdd"/>Back to List</a>
+        <a href="${pageContext.request.contextPath}/customer/list"/>Back to List</a>
     </p>
 </form:form>
     </div>

@@ -21,6 +21,8 @@
         <h2>Add Employee</h2>
 
     </div>
+    <br>
+    <br>
 </div>
     <div id="container">
 <form:form action="saveCustomerReg" modelAttribute="customer" method="POST">

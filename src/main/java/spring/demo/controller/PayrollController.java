@@ -1,5 +1,7 @@
 package spring.demo.controller;
 
+
+import org.springframework.validation.BindingResult;
 import spring.demo.entity.users;
 import spring.demo.entity.Payroll;
 import spring.demo.service.CustomerService;
@@ -10,12 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/payroll")
 public class  PayrollController {
-    private CustomerService payrollService;
+    public CustomerService payrollService;
     @Autowired
    public PayrollController(CustomerService payrollService){
        this.payrollService=payrollService;
@@ -36,8 +39,11 @@ public class  PayrollController {
         return "salaryUpdateForm";
     }
     @RequestMapping("/saveAccount")
-    public String saveAccount(@ModelAttribute("Employee") Payroll account)
+    public String saveAccount(@Valid  @ModelAttribute("Employee") Payroll account, BindingResult bindingResult)
     {
+        if(bindingResult.hasErrors()){
+            return "salaryUpdateForm";
+        }
         payrollService.saveAccount(account);
         return "redirect:/payroll/accounts";
     }
