@@ -22,6 +22,7 @@
 		<sonar.coverage.exclusions>
 			**/spring/demo/config/SecuredPasswordGenerator.java,
 			**/spring/demo/entity/**,
+			**/spring/demo/dao/CustomerDAOImpl
 <!--			**/spring/demo/DemoApplication.java-->
 		</sonar.coverage.exclusions>
 		<jacoco.version>0.8.6</jacoco.version>
